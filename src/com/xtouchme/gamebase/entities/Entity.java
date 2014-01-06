@@ -66,6 +66,14 @@ public class Entity {
 		return this;
 	}
 	
+	public float x() {
+		return position.x();
+	}
+	
+	public float y() {
+		return position.y();
+	}
+	
 	public int width() {
 		return width;
 	}
@@ -109,6 +117,9 @@ public class Entity {
 	}
 	
 	public Entity setAngle(float angle) {
+		if(angle < 0) angle += 360 * (int)Math.abs(angle/360);
+		angle %= 360;
+			
 		this.angle = angle;
 		return this;
 	}
