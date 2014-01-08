@@ -128,6 +128,10 @@ public class Entity {
 		return angle;
 	}
 	
+	public float distanceFrom(Entity other) {
+		return position.distanceFrom(other.position);
+	}
+	
 	public Entity follow(Entity e) {
 		setSpeed(e.speed);
 		return this;

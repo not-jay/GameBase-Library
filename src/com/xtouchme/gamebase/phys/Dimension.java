@@ -52,6 +52,10 @@ public class Dimension {
 		return y;
 	}
 	
+	public float distanceFrom(Dimension other) {
+		return (float)Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("x: %f\ty: %f", x, y);
