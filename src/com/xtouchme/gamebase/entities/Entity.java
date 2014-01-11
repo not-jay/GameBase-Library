@@ -3,7 +3,9 @@ package com.xtouchme.gamebase.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
 
 import com.xtouchme.gamebase.phys.Dimension;
 
@@ -17,6 +19,7 @@ public class Entity {
 	private boolean centered			= false;
 	private boolean collidable			= false;
 	private float angle					= 0;
+	private Shape hitbox				= null;
 	
 	protected Image sprite				= null;
 	
@@ -36,17 +39,15 @@ public class Entity {
 			else
 				g.drawImage(sprite, (int)position.x(), (int)position.y(), null);
 		}
+		if(angle != 0) g.setTransform(defTrans);
 		
 		/* "Hitbox" */
 		Color def = g.getColor();
 		g.setColor(Color.magenta);
-		if(centered)
-			g.drawRect((int)(position.x() - (width/2)), (int)(position.y() - (height/2)), width, height);
-		else
-			g.drawRect((int)position.x(), (int)position.y(), width, height);
+		if(hitbox != null) {
+			g.draw(hitbox);
+		}
 		g.setColor(def);
-		
-		if(angle != 0) g.setTransform(defTrans);
 		
 		/* Speed Lines? */
 		g.setColor(Color.blue);
@@ -57,7 +58,12 @@ public class Entity {
 	public void update(int delta) {
 		lastPosition.setX(position.x()).setY(position.y());
 		position.add(speed);
+		updateHitbox();
 	}
+	
+	public void updateHitbox() {}
+	
+	public void collisionResponse() {}
 	
 	public Entity setSprite(Image sprite) {
 		this.sprite = sprite;
@@ -135,5 +141,19 @@ public class Entity {
 	public Entity follow(Entity e) {
 		setSpeed(e.speed);
 		return this;
+	}
+	
+	public Entity setHitbox(Shape hitbox) {
+		this.hitbox = hitbox;
+		return this;
+	}
+	
+	public boolean collides(Entity other) {
+		if(hitbox == null) return false;
+		Area a = new Area(hitbox);
+		Area b = new Area(other.hitbox);
+		a.intersect(b);
+		
+		return !a.isEmpty();
 	}
 }
