@@ -1,10 +1,14 @@
-package com.xtouchme.gamebase.phys;
+package com.xtouchme.gamebase;
 
 public class Dimension {
 
 	private float x;
 	private float y;
 	
+	/** Copy constructor */
+	public Dimension(Dimension d) {
+		this(d.x, d.y);
+	}
 	public Dimension(float x, float y) {
 		this.x = x;
 		this.y = y;
