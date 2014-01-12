@@ -10,12 +10,12 @@ import com.xtouchme.gamebase.entities.Entity;
 
 public class Quadtree {
 	
-	private int maxObjects;
-	private int maxLevels;
-	private int level;
-	private List<Entity> objects;
-	private Rectangle2D.Float bounds;
-	private Quadtree[] nodes;
+	protected int maxObjects;
+	protected int maxLevels;
+	protected int level;
+	protected List<Entity> objects;
+	protected Rectangle2D.Float bounds;
+	protected Quadtree[] nodes;
 	
 	public Quadtree(int level, float x, float y, float width, float height) {
 		this(level, new Rectangle2D.Float(x, y, width, height), 10, 5);
@@ -104,7 +104,7 @@ public class Quadtree {
 		nodes[3] = new Quadtree(level+1, x + subWidth, y + subHeight, subWidth, subHeight, maxObjects, maxLevels);
 	}
 	
-	private int getIndex(Entity e) {
+	protected int getIndex(Entity e) {
 		int index = -1;
 		double verticalMidpoint = bounds.getX() + (bounds.getWidth() / 2);
 		double horizontalMidpoint = bounds.getY() + (bounds.getHeight() / 2);
