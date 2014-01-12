@@ -3,7 +3,7 @@ package com.xtouchme.gamebase.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.xtouchme.gamebase.phys.Dimension;
+import com.xtouchme.gamebase.Dimension;
 
 public class PhysicsEntity extends Entity {
 
@@ -53,7 +53,8 @@ public class PhysicsEntity extends Entity {
 			}
 		}
 		
-		position.add(speed);
+		if(following != null) position = following.position;
+		else position.add(speed);
 	}
 	
 	@Override

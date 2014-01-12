@@ -7,7 +7,9 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 
-import com.xtouchme.gamebase.phys.Dimension;
+import com.xtouchme.gamebase.Animation;
+import com.xtouchme.gamebase.AnimationFrame;
+import com.xtouchme.gamebase.Dimension;
 
 public class Entity {
 
@@ -20,8 +22,10 @@ public class Entity {
 	private boolean collidable			= false;
 	private float angle					= 0;
 	private Shape hitbox				= null;
+	protected Entity following			= null;
 	
 	protected Image sprite				= null;
+	protected Animation animation		= null;
 	
 	public Entity(float x, float y) {
 		setPosition(x, y);
@@ -31,7 +35,14 @@ public class Entity {
 		AffineTransform defTrans = g.getTransform();
 		if(angle != 0) 	g.rotate(Math.toRadians(angle), position.x(), position.y());
 		
-		if(sprite != null) {
+		if(animation != null) {
+			if(width == 0) width = animation.getImage().getWidth(null);
+			if(height == 0) height = animation.getImage().getHeight(null);
+			if(centered)
+				g.drawImage(animation.getImage(), (int)(position.x() - (width/2)), (int)(position.y() - (height/2)), null);
+			else
+				g.drawImage(animation.getImage(), (int)position.x(), (int)position.y(), null);
+		} else if(sprite != null) {
 			if(width == 0) width = sprite.getWidth(null);
 			if(height == 0) height = sprite.getHeight(null);
 			if(centered)
@@ -56,14 +67,30 @@ public class Entity {
 	}
 	
 	public void update(int delta) {
+		if(animation != null) animation.update(delta);
+		
 		lastPosition.setX(position.x()).setY(position.y());
-		position.add(speed);
+		if(following != null) position.setX(following.x()).setY(following.y());
+		else position.add(speed);
 		updateHitbox();
 	}
 	
 	public void updateHitbox() {}
 	
 	public void collisionResponse() {}
+	
+	public Entity setAnimation(AnimationFrame... frames) {
+		Animation a = new Animation();
+		for(AnimationFrame f : frames) {
+			a.addFrame(f);
+		}
+		return setAnimation(a);
+	}
+	
+	public Entity setAnimation(Animation animation) {
+		this.animation = animation;
+		return this;
+	}
 	
 	public Entity setSprite(Image sprite) {
 		this.sprite = sprite;
@@ -138,8 +165,8 @@ public class Entity {
 		return position.distanceFrom(other.position);
 	}
 	
-	public Entity follow(Entity e) {
-		setSpeed(e.speed);
+	public Entity follow(Entity following) {
+		this.following = following;
 		return this;
 	}
 	
