@@ -15,7 +15,7 @@ public class EntityManager {
 	List<Entity> entities = new ArrayList<>();
 	List<Entity> toAdd	  = new ArrayList<>();
 	List<Entity> toRemove = new ArrayList<>();
-	Quadtree tree		  = new Quadtree(0, 0, 0, 480, 800); //TODO: GameManager
+	Quadtree tree		  = new Quadtree(0, 0, 0, 480, 800, 10, 3); //TODO: GameManager
 	List<Entity> collidables = new ArrayList<>();
 	
 	private int lastDelta = 0;
