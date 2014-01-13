@@ -22,6 +22,11 @@ public class EntityManager {
 	
 	private static EntityManager instance = null;
 	
+	/** Gets all entities */
+	public List<Entity> getEntities() {
+		return entities;
+	}
+	
 	/** Sends a KeyEvent to all entities that implements a KeyboardInput */
 	public void broadcastKeyEvent(KeyEvent e, KeyboardInput.EventType type) {
 		synchronized (entities) {
