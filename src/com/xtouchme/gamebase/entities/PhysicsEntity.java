@@ -3,13 +3,13 @@ package com.xtouchme.gamebase.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.xtouchme.gamebase.Dimension;
+import com.xtouchme.gamebase.Vector;
 
 public class PhysicsEntity extends Entity {
 
-	protected Dimension limit			= new Dimension(-1, -1);
-	protected Dimension acceleration	= new Dimension(0, 0);
-	protected Dimension drag			= new Dimension(0, 0);
+	protected Vector limit			= new Vector(-1, -1);
+	protected Vector acceleration	= new Vector(0, 0);
+	protected Vector drag			= new Vector(0, 0);
 	
 	public PhysicsEntity(float x, float y) {
 		super(x, y);
@@ -68,31 +68,31 @@ public class PhysicsEntity extends Entity {
 		g.setColor(def);
 	}
 	
-	public PhysicsEntity setDrag(Dimension drag) {
+	public PhysicsEntity setDrag(Vector drag) {
 		this.drag = drag;
 		return this;
 	}
 	
 	public PhysicsEntity setDrag(float x, float y) {
-		return setDrag(new Dimension(x, y));
+		return setDrag(new Vector(x, y));
 	}
 	
-	public PhysicsEntity limitSpeed(Dimension limit) {
+	public PhysicsEntity limitSpeed(Vector limit) {
 		this.limit = limit;
 		return this;
 	}
 	
 	public PhysicsEntity limitSpeed(float x, float y) {
-		return limitSpeed(new Dimension(x, y));
+		return limitSpeed(new Vector(x, y));
 	}
 	
-	public PhysicsEntity setAcceleration(Dimension acceleration) {
+	public PhysicsEntity setAcceleration(Vector acceleration) {
 		this.acceleration = acceleration;
 		return this;
 	}
 	
 	public PhysicsEntity setAcceleration(float x, float y) {
-		return setAcceleration(new Dimension(x, y));
+		return setAcceleration(new Vector(x, y));
 	}
 	
 }

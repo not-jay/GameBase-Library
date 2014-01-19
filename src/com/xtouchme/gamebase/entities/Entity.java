@@ -9,13 +9,13 @@ import java.awt.geom.Area;
 
 import com.xtouchme.gamebase.Animation;
 import com.xtouchme.gamebase.AnimationFrame;
-import com.xtouchme.gamebase.Dimension;
+import com.xtouchme.gamebase.Vector;
 
 public class Entity {
 
-	protected Dimension position		= new Dimension(0, 0);
-	protected Dimension lastPosition	= new Dimension(0, 0);
-	protected Dimension speed			= new Dimension(0, 0);
+	protected Vector position		= new Vector(0, 0);
+	protected Vector lastPosition	= new Vector(0, 0);
+	protected Vector speed			= new Vector(0, 0);
 	private int width					= 0;
 	private int height					= 0;
 	private boolean centered			= false;
@@ -121,13 +121,13 @@ public class Entity {
 		return this;
 	}
 	
-	public Entity setSpeed(Dimension speed) {
+	public Entity setSpeed(Vector speed) {
 		this.speed = speed;
 		return this;
 	}
 	
 	public Entity setSpeed(float x, float y) {
-		return setSpeed(new Dimension(x, y));
+		return setSpeed(new Vector(x, y));
 	}
 	
 	public Entity setCentered(boolean centered) {
