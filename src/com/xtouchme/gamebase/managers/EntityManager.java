@@ -2,13 +2,11 @@ package com.xtouchme.gamebase.managers;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.xtouchme.gamebase.entities.Entity;
 import com.xtouchme.gamebase.entities.collision.Quadtree;
-import com.xtouchme.gamebase.input.KeyboardInput;
 
 public class EntityManager {
 	
@@ -25,27 +23,6 @@ public class EntityManager {
 	/** Gets all entities */
 	public List<Entity> getEntities() {
 		return entities;
-	}
-	
-	/** Sends a KeyEvent to all entities that implements a KeyboardInput */
-	public void broadcastKeyEvent(KeyEvent e, KeyboardInput.EventType type) {
-		synchronized (entities) {
-			for(Entity entity : entities) {
-				if(entity instanceof KeyboardInput) {
-					switch(type) {
-					case KEY_PRESS:
-						((KeyboardInput)entity).onKeyPress(e);
-						break;
-					case KEY_RELEASE:
-						((KeyboardInput)entity).onKeyRelease(e);
-						break;
-					case KEY_TYPE:
-						((KeyboardInput)entity).onKeyType(e);
-						break;
-					}
-				}
-			}
-		}
 	}
 	
 	public void add(Entity e) {
