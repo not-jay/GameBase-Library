@@ -6,26 +6,29 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
+import java.util.HashMap;
 
 import com.xtouchme.gamebase.Animation;
 import com.xtouchme.gamebase.AnimationFrame;
 import com.xtouchme.gamebase.Vector;
+import com.xtouchme.gamebase.managers.ResourceManager;
 
 public class Entity {
 
-	protected Vector position		= new Vector(0, 0);
-	protected Vector lastPosition	= new Vector(0, 0);
-	protected Vector speed			= new Vector(0, 0);
-	private int width					= 0;
-	private int height					= 0;
-	private boolean centered			= false;
-	private boolean collidable			= false;
-	private float angle					= 0;
-	private Shape hitbox				= null;
-	protected Entity following			= null;
+	protected Vector position				= new Vector(0, 0);
+	protected Vector lastPosition			= new Vector(0, 0);
+	protected Vector speed					= new Vector(0, 0);
+	private int width						= 0;
+	private int height						= 0;
+	private boolean centered				= false;
+	private boolean collidable				= false;
+	private float angle						= 0;
+	private Shape hitbox					= null;
+	protected Entity following				= null;
 	
-	protected Image sprite				= null;
-	protected Animation animation		= null;
+	private HashMap<String, Image> imageMap	= new HashMap<>();
+	protected Image sprite					= null;
+	protected Animation animation			= null;
 	
 	public Entity(float x, float y) {
 		setPosition(x, y);
@@ -182,5 +185,18 @@ public class Entity {
 		a.intersect(b);
 		
 		return !a.isEmpty();
+	}
+	
+	public void addSprite(String tag, String imagePath) {
+		ResourceManager rm = ResourceManager.getInstance(null);
+		addSprite(tag, rm.getImage(imagePath));
+	}
+	public void addSprite(String tag, Image img) {
+		imageMap.put(tag, img);
+	}
+	
+	public void switchSprite(String tag) {
+		if(!imageMap.containsKey(tag)) return;
+		setSprite(imageMap.get(tag));
 	}
 }
