@@ -64,7 +64,7 @@ public class Entity {
 		
 		/* "Hitbox" */
 		Color def = g.getColor();
-		g.setColor(Color.CYAN);
+		g.setColor(Color.MAGENTA);
 		if(hitbox != null) {
 			g.draw(hitbox);
 		}
