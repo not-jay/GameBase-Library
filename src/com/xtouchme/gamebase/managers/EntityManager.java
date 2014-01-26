@@ -39,14 +39,18 @@ public class EntityManager {
 		//Clean up
 		synchronized (toRemove) {
 			for(Entity e : toRemove) {
+				e.onPreRemove();
 				entities.remove(e);
+				e.onPostRemove();
 			}
 			toRemove.clear();
 		}
 		
 		synchronized (toAdd) {
 			for(Entity e : toAdd) {
+				e.onPreAdd();
 				entities.add(e);
+				e.onPostAdd();
 			}
 			toAdd.clear();
 		}

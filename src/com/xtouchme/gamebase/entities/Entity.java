@@ -34,6 +34,13 @@ public class Entity {
 		setPosition(x, y);
 	}
 	
+	public void updateHitbox() {}
+	public void collisionResponse() {}
+	public void onPreAdd() {}
+	public void onPostAdd() {}
+	public void onPreRemove() {}
+	public void onPostRemove() {}
+	
 	public void render(Graphics2D g) {
 		AffineTransform defTrans = g.getTransform();
 		if(angle != 0) 	g.rotate(Math.toRadians(angle), position.x(), position.y());
@@ -57,7 +64,7 @@ public class Entity {
 		
 		/* "Hitbox" */
 		Color def = g.getColor();
-		g.setColor(Color.magenta);
+		g.setColor(Color.CYAN);
 		if(hitbox != null) {
 			g.draw(hitbox);
 		}
@@ -77,10 +84,6 @@ public class Entity {
 		else position.add(speed);
 		updateHitbox();
 	}
-	
-	public void updateHitbox() {}
-	
-	public void collisionResponse() {}
 	
 	public Entity setAnimation(AnimationFrame... frames) {
 		Animation a = new Animation();
