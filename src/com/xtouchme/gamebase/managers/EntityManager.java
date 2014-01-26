@@ -74,7 +74,8 @@ public class EntityManager {
 			}
 			
 			//update all entities (including ones to be removed due to collision)
-			for(Entity e : entities) {
+			List<Entity> toUpdate = new ArrayList<>(entities);
+			for(Entity e : toUpdate) {
 				e.update(delta);
 			}
 			
@@ -85,7 +86,8 @@ public class EntityManager {
 	public void render(Graphics2D g) {
 		int rendered = 0;
 		synchronized (entities) {
-			for(Entity e : entities) {
+			List<Entity> toRender = new ArrayList<>(entities);
+			for(Entity e : toRender) {
 				if(e.isVisible()) {
 					e.render(g);
 					rendered++;
