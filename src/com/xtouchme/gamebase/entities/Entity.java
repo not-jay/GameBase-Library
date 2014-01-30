@@ -35,7 +35,7 @@ public class Entity {
 	}
 	
 	public void updateHitbox() {}
-	public void collisionResponse() {}
+	public void collisionResponse(Entity other) {}
 	public void onPreAdd() {}
 	public void onPostAdd() {}
 	public void onPreRemove() {}

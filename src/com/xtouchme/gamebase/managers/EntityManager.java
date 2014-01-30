@@ -69,7 +69,7 @@ public class EntityManager {
 				
 				for(Entity other : collidables) {
 					if(e == other || !e.isCollidable() || !other.isCollidable()) continue;
-					if(e.collides(other)) e.collisionResponse();
+					if(e.collides(other)) e.collisionResponse(other);
 				}
 			}
 			
