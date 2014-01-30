@@ -14,19 +14,19 @@ public class Quadtree {
 	protected int maxLevels;
 	protected int level;
 	protected List<Entity> objects;
-	protected Rectangle2D.Float bounds;
+	protected Rectangle2D bounds;
 	protected Quadtree[] nodes;
 	
 	public Quadtree(int level, float x, float y, float width, float height) {
 		this(level, new Rectangle2D.Float(x, y, width, height), 10, 5);
 	}
-	public Quadtree(int level, Rectangle2D.Float bounds) {
+	public Quadtree(int level, Rectangle2D bounds) {
 		this(level, bounds, 10, 5);
 	}
 	public Quadtree(int level, float x, float y, float width, float height, int maxObjects, int maxLevels) {
 		this(level, new Rectangle2D.Float(x, y, width, height), maxObjects, maxLevels);
 	}
-	public Quadtree(int level, Rectangle2D.Float bounds, int maxObjects, int maxLevels) {
+	public Quadtree(int level, Rectangle2D bounds, int maxObjects, int maxLevels) {
 		this.level = level;
 		this.bounds = bounds;
 		this.maxObjects = maxObjects;

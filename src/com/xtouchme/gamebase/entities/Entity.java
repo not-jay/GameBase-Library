@@ -194,6 +194,7 @@ public class Entity {
 		ResourceManager rm = ResourceManager.getInstance(null);
 		addSprite(tag, rm.getImage(imagePath));
 	}
+	
 	public void addSprite(String tag, Image img) {
 		imageMap.put(tag, img);
 	}
