@@ -70,4 +70,13 @@ public class Animation {
 		return (looping)?false:(currentDuration >= totalDuration);
 	}
 	
+	public void setInitialFrame(int frame) {
+		for(int i = 0; i < frame; i++, currentFrame++) {
+			currentDuration += frames.get(i).getFrameDuration();
+		}
+	}
+	
+	public int length() {
+		return frames.size();
+	}
 }

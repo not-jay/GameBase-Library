@@ -203,4 +203,9 @@ public class Entity {
 		if(!imageMap.containsKey(tag)) return;
 		setSprite(imageMap.get(tag));
 	}
+	
+	public Entity setInitialAnimationFrame(int frame) {
+		this.animation.setInitialFrame(frame);
+		return this;
+	}
 }
