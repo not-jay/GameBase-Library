@@ -1,6 +1,13 @@
 package com.xtouchme.gamebase;
 
-public class Vector {
+import java.io.Serializable;
+
+public class Vector implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1101195365528347386L;
 
 	public enum Angle {
 		DEGREES, RADIAN

@@ -12,6 +12,7 @@ import com.xtouchme.gamebase.Animation;
 import com.xtouchme.gamebase.AnimationFrame;
 import com.xtouchme.gamebase.Vector;
 import com.xtouchme.gamebase.managers.ResourceManager;
+import com.xtouchme.gamebase.managers.SettingsManager;
 
 public class Entity {
 
@@ -150,9 +151,10 @@ public class Entity {
 		return collidable;
 	}
 	
-	public boolean isVisible() { //TODO
-		if(centered) return position.x() + (width/2) >= 0 && position.x() - (width/2) <= 480 && position.y() + (height/2) >= 0 && position.y() - (height/2) <= 800; //TODO
-		else return position.x() + width >= 0 && position.x() <= 480 && position.y() + height >= 0 && position.y() <= 800; //TODO
+	public boolean isVisible() {
+		SettingsManager sm = SettingsManager.getInstance();
+		if(centered) return position.x() + (width/2) >= 0 && position.x() - (width/2) <= sm.gameWidth() && position.y() + (height/2) >= 0 && position.y() - (height/2) <= sm.gameHeight();
+		else return position.x() + width >= 0 && position.x() <= sm.gameWidth() && position.y() + height >= 0 && position.y() <= sm.gameHeight();
 	}
 	
 	public Entity setAngle(float angle) {

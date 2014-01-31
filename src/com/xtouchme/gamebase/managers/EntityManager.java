@@ -13,8 +13,9 @@ public class EntityManager {
 	List<Entity> entities = new ArrayList<>();
 	List<Entity> toAdd	  = new ArrayList<>();
 	List<Entity> toRemove = new ArrayList<>();
-	Quadtree tree		  = new Quadtree(0, 0, 0, 480, 800, 10, 3); //TODO: GameManager
+	
 	List<Entity> collidables = new ArrayList<>();
+	Quadtree tree		  	 = null;
 	
 	private int lastDelta = 0;
 	
@@ -108,7 +109,10 @@ public class EntityManager {
 	}
 	
 	//-- Singleton methods --//
-	private EntityManager() {}
+	private EntityManager() {
+		SettingsManager sm = SettingsManager.getInstance();
+		tree = new Quadtree(0, 0, 0, sm.gameWidth(), sm.gameHeight(), 10, 3);
+	}
 	public static EntityManager getInstance() {
 		if(instance == null) instance = new EntityManager();
 		return instance;
