@@ -38,9 +38,9 @@ public class Animation {
 	}
 	
 	public synchronized void update(int delta) {
+		currentDuration += delta;
+		
 		if(frames.size() > 1) {
-			currentDuration += delta;
-			
 			if(looping) {
 				if(currentDuration >= totalDuration) {
 					currentDuration %= totalDuration;
@@ -70,10 +70,14 @@ public class Animation {
 		return (looping)?false:(currentDuration >= totalDuration);
 	}
 	
-	public void setInitialFrame(int frame) {
+	public Animation setInitialFrame(int frame) {
+		currentFrame = 0;
+		currentDuration = 0;
+		
 		for(int i = 0; i < frame; i++, currentFrame++) {
 			currentDuration += frames.get(i).getFrameDuration();
 		}
+		return this;
 	}
 	
 	public int length() {
