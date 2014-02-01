@@ -58,8 +58,9 @@ public class Animation {
 		else return null;
 	}
 	
-	public void loop(boolean looping) {
+	public Animation loop(boolean looping) {
 		this.looping = looping;
+		return this;
 	}
 	
 	public boolean isLooping() {
