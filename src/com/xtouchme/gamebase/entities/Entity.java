@@ -35,11 +35,17 @@ public class Entity {
 		setPosition(x, y);
 	}
 	
+	/** Blank Override-able method **/
 	public void updateHitbox() {}
+	/** Blank Override-able method **/
 	public void collisionResponse(Entity other) {}
+	/** Blank Override-able method **/
 	public void onPreAdd() {}
+	/** Blank Override-able method **/
 	public void onPostAdd() {}
+	/** Blank Override-able method **/
 	public void onPreRemove() {}
+	/** Blank Override-able method **/
 	public void onPostRemove() {}
 	
 	public void render(Graphics2D g) {
@@ -86,8 +92,8 @@ public class Entity {
 		updateHitbox();
 	}
 	
-	public Entity setAnimation(AnimationFrame... frames) {
-		Animation a = new Animation();
+	public Entity setAnimation(boolean looping, AnimationFrame... frames) {
+		Animation a = new Animation().loop(looping);
 		for(AnimationFrame f : frames) {
 			a.addFrame(f);
 		}
@@ -97,6 +103,11 @@ public class Entity {
 	public Entity setAnimation(Animation animation) {
 		this.animation = animation;
 		return this;
+	}
+	
+	public Entity setSprite(String sprite) {
+		ResourceManager rm = ResourceManager.getInstance(null);
+		return setSprite(rm.getImage(sprite));
 	}
 	
 	public Entity setSprite(Image sprite) {

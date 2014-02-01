@@ -53,8 +53,7 @@ public class PhysicsEntity extends Entity {
 			}
 		}
 		
-		if(following != null) position = following.position;
-		else position.add(speed);
+		super.update(delta);
 	}
 	
 	@Override
