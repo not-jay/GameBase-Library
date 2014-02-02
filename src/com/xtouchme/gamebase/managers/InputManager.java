@@ -1,16 +1,22 @@
 package com.xtouchme.gamebase.managers;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.xtouchme.gamebase.Vector;
 import com.xtouchme.gamebase.input.KeyboardInput;
+import com.xtouchme.gamebase.input.MouseInput;
 
-public class InputManager implements KeyboardInput {
+public class InputManager implements KeyboardInput, MouseInput {
 
-	private boolean[] pressed					= new boolean[1024];
+	private boolean[] keypressed				= new boolean[1024];
+	private boolean[] mousepressed				= new boolean[256];
 	private HashMap<String, List<Integer>> keys	= new HashMap<>();
+	private Vector lastPosition					= null;
+	private Vector position						= null;
 	
 	private static InputManager instance		= null;
 	
@@ -44,8 +50,8 @@ public class InputManager implements KeyboardInput {
 	}
 	
 	private boolean keyPressed(int code) {
-		if(pressed[code]) {
-			pressed[code] = false;
+		if(keypressed[code]) {
+			keypressed[code] = false;
 			return true;
 		}
 		
@@ -53,21 +59,69 @@ public class InputManager implements KeyboardInput {
 	}
 	
 	private boolean keyDown(int code) {
-		return pressed[code];
+		return keypressed[code];
+	}
+	
+	public boolean isMouseClicked(int button) {
+		if(mousepressed[button]) {
+			mousepressed[button] = false;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public boolean isMouseDown(int button) {
+		return mousepressed[button];
+	}
+	
+	public Vector getMousePosition() {
+		return position;
+	}
+	
+	public float getMouseX() {
+		return position.x();
+	}
+	
+	public float getMouseY() {
+		return position.y();
 	}
 	
 	@Override
 	public void onKeyPress(KeyEvent e) {
-		pressed[e.getKeyCode()] = true;
+		keypressed[e.getKeyCode()] = true;
 	}
 
 	@Override
 	public void onKeyRelease(KeyEvent e) {
-		pressed[e.getKeyCode()] = false;
+		keypressed[e.getKeyCode()] = false;
 	}
 
 	@Override
 	public void onKeyType(KeyEvent e) {}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		mousepressed[e.getButton()] = true;
+		lastPosition = position;
+		position = new Vector(e.getX(), e.getY());
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		mousepressed[e.getButton()] = false;
+		lastPosition = position;
+		position = new Vector(e.getX(), e.getY());
+	}
 	
 	//-- Singleton methods --//
 	private InputManager() {}
@@ -79,4 +133,5 @@ public class InputManager implements KeyboardInput {
 	public Object clone() throws CloneNotSupportedException {
 		throw new CloneNotSupportedException();
 	}
+
 }
