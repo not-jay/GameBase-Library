@@ -221,4 +221,14 @@ public class Entity {
 		this.animation.setInitialFrame(frame);
 		return this;
 	}
+	
+	public Entity setWidth(int width) {
+		this.width = width;
+		return this;
+	}
+	
+	public Entity setHeight(int height) {
+		this.height = height;
+		return this;
+	}
 }
