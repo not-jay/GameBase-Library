@@ -1,6 +1,9 @@
 package com.xtouchme.gamebase.managers;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,6 +28,22 @@ public class ResourceManager {
 		return image;
 	}
 	
+	public Font getFont(int fontFormat, String filename, int fontSize) {
+		Font font = null;
+		URL fontURL = null;
+		
+		try {
+			fontURL = new URL(baseDirectory, filename);
+			font = Font.createFont(fontFormat, fontURL.openStream());
+		} catch (FontFormatException e) {
+			System.err.printf("%s: Bad Font Format!%n", filename);
+		} catch (IOException e) {
+			System.err.printf("%s: Error loading font!%n", filename);
+		}
+		
+		return font.deriveFont((float)fontSize);
+	}
+	
 	/* TODO: change to a JSON parser? */
 	/* TODO: return a map of all resources in a .json file? */
 	//-- Singleton methods --//
@@ -38,7 +57,7 @@ public class ResourceManager {
 		try {
 			this.baseDirectory = new URL(workingDirectory, path);
 		} catch (MalformedURLException e) {
-			System.err.printf("%s: MalformedURL", workingDirectory.toExternalForm());
+			System.err.printf("%s: Malformed URL", workingDirectory.toExternalForm());
 			baseDirectory = null;
 		}
 	}
