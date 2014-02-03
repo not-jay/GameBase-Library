@@ -4,10 +4,10 @@ import java.awt.event.MouseEvent;
 
 public interface MouseInput {
 
-	public void mouseClicked(MouseEvent e);
-	public void mouseEntered(MouseEvent e);
-	public void mouseExited(MouseEvent e);
-	public void mousePressed(MouseEvent e);
-	public void mouseReleased(MouseEvent e);
+	public void onMouseClicked(MouseEvent e);
+	public void onMouseEntered(MouseEvent e);
+	public void onMouseExited(MouseEvent e);
+	public void onMousePressed(MouseEvent e);
+	public void onMouseReleased(MouseEvent e);
 	
 }

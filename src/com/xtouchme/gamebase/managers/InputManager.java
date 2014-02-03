@@ -101,23 +101,23 @@ public class InputManager implements KeyboardInput, MouseInput {
 	public void onKeyType(KeyEvent e) {}
 	
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void onMouseClicked(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void onMouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void onMouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void onMousePressed(MouseEvent e) {
 		mousepressed[e.getButton()] = true;
 		lastPosition = position;
 		position = new Vector(e.getX(), e.getY());
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void onMouseReleased(MouseEvent e) {
 		mousepressed[e.getButton()] = false;
 		lastPosition = position;
 		position = new Vector(e.getX(), e.getY());
