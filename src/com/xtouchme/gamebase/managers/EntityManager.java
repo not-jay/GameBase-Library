@@ -96,16 +96,16 @@ public class EntityManager {
 			}
 		}
 		
-		Color def = g.getColor();
-		g.setColor(Color.black);
-		g.drawString(String.format("E: %d", entities.size()), 0, 10);
-		g.drawString(String.format("QA: %d", toAdd.size()), 50, 10);
-		g.drawString(String.format("R: %d", rendered), 0, 20);
-		g.drawString(String.format("QR: %d", toRemove.size()), 50, 20);
-		g.drawString(String.format("D: %d", lastDelta), 0, 30);
-		g.setColor(def);
-		
-		tree.render(g);
+//		Color def = g.getColor();
+//		g.setColor(Color.black);
+//		g.drawString(String.format("E: %d", entities.size()), 0, 10);
+//		g.drawString(String.format("QA: %d", toAdd.size()), 50, 10);
+//		g.drawString(String.format("R: %d", rendered), 0, 20);
+//		g.drawString(String.format("QR: %d", toRemove.size()), 50, 20);
+//		g.drawString(String.format("D: %d", lastDelta), 0, 30);
+//		g.setColor(def);
+//		
+//		tree.render(g);
 	}
 	
 	//-- Singleton methods --//

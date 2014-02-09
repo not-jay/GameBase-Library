@@ -3,12 +3,13 @@ package com.xtouchme.gamebase.managers;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+
+import data.ResourceLoader;
 
 public class ResourceManager {
 
@@ -30,11 +31,9 @@ public class ResourceManager {
 	
 	public Font getFont(int fontFormat, String filename, int fontSize) {
 		Font font = null;
-		URL fontURL = null;
 		
 		try {
-			fontURL = new URL(baseDirectory, filename);
-			font = Font.createFont(fontFormat, fontURL.openStream());
+			font = Font.createFont(fontFormat, ResourceLoader.class.getResourceAsStream(filename));//fontURL.openStream());
 		} catch (FontFormatException e) {
 			System.err.printf("%s: Bad Font Format!%n", filename);
 		} catch (IOException e) {

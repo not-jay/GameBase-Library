@@ -69,18 +69,18 @@ public class Entity {
 		}
 		if(angle != 0) g.setTransform(defTrans);
 		
-		/* "Hitbox" */
-		Color def = g.getColor();
-		g.setColor(Color.MAGENTA);
-		if(hitbox != null) {
-			g.draw(hitbox);
-		}
-		g.setColor(def);
-		
-		/* Speed Lines? */
-		g.setColor(Color.blue);
-		g.drawLine((int)position.x(), (int)position.y(), (int)(position.x() + speed.x()), (int)(position.y() + speed.y()));
-		g.setColor(def);
+//		/* "Hitbox" */
+//		Color def = g.getColor();
+//		g.setColor(Color.MAGENTA);
+//		if(hitbox != null) {
+//			g.draw(hitbox);
+//		}
+//		g.setColor(def);
+//		
+//		/* Speed Lines? */
+//		g.setColor(Color.blue);
+//		g.drawLine((int)position.x(), (int)position.y(), (int)(position.x() + speed.x()), (int)(position.y() + speed.y()));
+//		g.setColor(def);
 	}
 	
 	public void update(int delta) {
