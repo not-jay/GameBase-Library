@@ -66,14 +66,16 @@ public class Entity {
 			r.sprite.end();
 		}
 		
-//		/* "Hitbox" */
-//		Color def = g.getColor();
-//		g.setColor(Color.MAGENTA);
-//		if(hitbox != null) {
-//			g.draw(hitbox);
-//		}
-//		g.setColor(def);
-//		
+		/* "Hitbox" */
+		if(GB.debug) {
+			r.shape.begin(ShapeType.Line);
+			if(centered)
+				r.shape.rect(position.x - width/2, position.y - height/2, width, height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
+			else
+				r.shape.rect(position.x, position.y, width, height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
+			r.shape.end();
+		}
+		
 //		/* Speed Lines? */
 //		g.setColor(Color.blue);
 //		g.drawLine((int)position.x(), (int)position.y(), (int)(position.x() + speed.x()), (int)(position.y() + speed.y()));
