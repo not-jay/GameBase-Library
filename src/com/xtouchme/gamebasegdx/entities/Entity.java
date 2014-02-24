@@ -33,7 +33,7 @@ public class Entity {
 	
 	private EntityAI ai								= null;
 	
-	private HashMap<String, TextureRegion> imageMap	= new HashMap<>();
+	private HashMap<String, TextureRegion> imageMap	= new HashMap<String, TextureRegion>();
 	protected TextureRegion sprite					= null;
 	protected Animation animation					= null;
 	private float elapsedTime						= 0;

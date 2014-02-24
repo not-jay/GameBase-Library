@@ -43,7 +43,7 @@ public class AssetManager {
 	/* TODO: return a map of all resources in a .json file? */
 	//-- Singleton methods --//
 	private AssetManager() {
-		loadedTextures = new HashMap<>();
+		loadedTextures = new HashMap<String, Texture>();
 	}
 	
 	public static AssetManager getInstance() {

@@ -13,9 +13,9 @@ import com.xtouchme.gamebasegdx.helpers.Renderer;
 
 public class EntityManager {
 	
-	List<Entity> entities = new ArrayList<>();
-	List<Entity> toAdd	  = new ArrayList<>();
-	List<Entity> toRemove = new ArrayList<>();
+	List<Entity> entities = new ArrayList<Entity>();
+	List<Entity> toAdd	  = new ArrayList<Entity>();
+	List<Entity> toRemove = new ArrayList<Entity>();
 	
 	Renderer r;
 	OrthographicCamera camera;
@@ -81,7 +81,7 @@ public class EntityManager {
 //			}
 			
 			//update all entities (including ones to be removed due to collision)
-			List<Entity> toUpdate = new ArrayList<>(entities);
+			List<Entity> toUpdate = new ArrayList<Entity>(entities);
 			for(Entity e : toUpdate) {
 				e.update(delta);
 			}
@@ -97,7 +97,7 @@ public class EntityManager {
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		synchronized (entities) {
-			List<Entity> toRender = new ArrayList<>(entities);
+			List<Entity> toRender = new ArrayList<Entity>(entities);
 			for(Entity e : toRender) {
 				if(e.isVisible()) {
 					e.render(r);
