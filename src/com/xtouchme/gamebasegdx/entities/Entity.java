@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.xtouchme.gamebasegdx.GB;
 import com.xtouchme.gamebasegdx.entities.ai.EntityAI;
 import com.xtouchme.gamebasegdx.helpers.Renderer;
 import com.xtouchme.gamebasegdx.managers.AssetManager;
