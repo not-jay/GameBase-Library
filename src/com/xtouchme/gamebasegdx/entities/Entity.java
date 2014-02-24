@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.xtouchme.gamebasegdx.entities.ai.EntityAI;
 import com.xtouchme.gamebasegdx.helpers.Renderer;
 import com.xtouchme.gamebasegdx.managers.AssetManager;
 
@@ -29,7 +30,7 @@ public class Entity {
 	private float angle								= 0;
 	protected Entity following						= null;
 	
-	private EntityAI ai;							= null;
+	private EntityAI ai								= null;
 	
 	private HashMap<String, TextureRegion> imageMap	= new HashMap<>();
 	protected TextureRegion sprite					= null;
@@ -238,5 +239,14 @@ public class Entity {
 	public Entity setHeight(int height) {
 		this.height = height;
 		return this;
+	}
+	
+	public Entity setAI(EntityAI ai) {
+		this.ai = ai;
+		return this;
+	}
+	
+	public EntityAI getAI() {
+		return ai;
 	}
 }
