@@ -88,7 +88,7 @@ public class Entity {
 		
 		lastPosition.set(position);
 		if(following != null) position.set(following.position);
-		else position.add(speed);
+		else position.add(speed.cpy().scl(delta));
 		updateHitbox();
 	}
 	
@@ -136,6 +136,12 @@ public class Entity {
 	
 	public int height() {
 		return height;
+	}
+	
+	public Entity setPosition(Vector2 position) {
+		lastPosition.set(position);
+		this.position.set(position);
+		return this;
 	}
 	
 	public Entity setPosition(float x, float y) {
@@ -188,6 +194,10 @@ public class Entity {
 	
 	public float distanceFrom(Entity other) {
 		return position.dst(other.position);
+	}
+	
+	public float sqDistanceFrom(Entity other) {
+		return position.dst2(other.position);
 	}
 	
 	public Entity follow(Entity following) {
@@ -246,10 +256,11 @@ public class Entity {
 	
 	public Entity setAI(EntityAI ai) {
 		this.ai = ai;
+		ai.setEntity(this);
 		return this;
 	}
 	
-	public EntityAI getAI() {
+	public EntityAI ai() {
 		return ai;
 	}
 }
